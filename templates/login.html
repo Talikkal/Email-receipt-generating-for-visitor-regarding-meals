@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+
+        body 
+        {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(rgb(140,82,255), rgb(0,191,99));
+        }
+            
+            .container
+            {
+            width: 30%;
+            height: 70vh;
+            background-position: center;
+            background-size: centre;
+            margin-top: 30px;
+            margin-left: 65px;
+            background-color: #ffffff;
+            border-radius: 25px;
+            }
+            h2 
+            {   
+            margin-bottom: 30px;
+            text-align: center;
+            font-stretch:extra-expanded;
+            font-size: 33px;
+            color:rgb(35, 15, 147);
+            font-family: monospace;
+            font-weight: bolder;
+            margin-left: 10px;
+            margin-top: 50px;
+            }
+            label 
+            {
+            display: inline-flex;
+            margin-bottom: 0px;
+            font-weight: small;
+            margin-left: 20px;
+            margin-top: 53px;
+            }
+        
+  #username
+  {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 50px;
+    
+  }
+  #password  
+{ 
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    position: absolute;
+    margin-left: 14px;
+    margin-top: 50px;
+}
+button {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 150px;   
+            background-color: #0f7df3;
+            color: rgb(254, 253, 253);
+            padding: 10px;
+            border: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-left: 130px;
+            margin-top: 45px;
+        }
+         button:hover 
+        {
+            background-color: #0056b3;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class ="login">
+            <h2>Login</h2><br>
+        <form action="/login" method="POST">
+            <label for="username">Username:  </label>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="password">Password:  </label>
+            <input type="password" id="password" name="password" required><br><br>
+            <BUTTON type="submit">LOGIN</BUTTON>
+        </form>
+        </section>
+    </div>
+    </section>
+</body>
+</html>

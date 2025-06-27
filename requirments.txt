@@ -1,0 +1,10 @@
+
+Python   3.12.4
+
+html
+
+css
+
+java script
+
+Flask

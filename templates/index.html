@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150vh;
+            margin: 0;
+            background-image: linear-gradient(rgb(140, 82, 255), rgb(0, 191, 99));
+        }
+
+        .container {
+            background: white;
+            padding: 70px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 640px;
+            box-sizing: border-box;
+            border: 2px solid black;
+            height: 110vh;
+        }
+
+        h2 {
+            margin-top: -50px;
+            text-align: center;
+            font-size: 28px;
+            color: #231095;
+            font-family: monospace;
+            font-weight: bolder;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: small;
+            margin-right: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 7.5px;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+            box-sizing: border-box;
+            font-size: small;
+            height: 36px;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+            height: 14px;
+        }
+
+        button {
+            background-color: #0f7df3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            height: 30px;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 7.5px;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: small;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function toTitleCase(str) {
+            return str.split(' ').map(word => {
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            }).join(' ');
+        }
+
+        function handleNameInput(event) {
+            const inputField = event.target;
+            const caretPosition = inputField.selectionStart; // Get the current caret position
+            inputField.value = toTitleCase(inputField.value);
+            inputField.setSelectionRange(caretPosition, caretPosition); // Set the caret position back
+        }
+
+        function generateSlipNumber() {
+            const date = new Date();
+            const month = date.toLocaleString('default', { month: 'short' }); // 'short' for 3-character month name
+            const year = date.getFullYear().toString().slice(-2); // Last 2 digits of the year
+            const day = date.getDate();
+            const hours = date.getHours();
+            const minutes = date.getMinutes();
+            const seconds = date.getSeconds();
+            const milliseconds = date.getMilliseconds();
+
+            // Create a unique identifier using the current time
+            const uniqueIdentifier = `${hours}${minutes}${seconds}${milliseconds}`;
+
+            return `${month}${year}-${day}-${uniqueIdentifier}`;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let nameField = document.getElementById("name");
+            nameField.addEventListener("input", handleNameInput); // Add event listener for input events
+
+            document.getElementById('no-tea').addEventListener('change', function() {
+                var teaInput = document.getElementById('tea');
+                if (this.checked) {
+                    teaInput.value = 'NA';
+                    teaInput.disabled = true;
+                } else {
+                    teaInput.value = '';
+                    teaInput.disabled = false;
+                }
+            });
+
+            document.getElementById('no-snacks').addEventListener('change', function() {
+                var snacksInput = document.getElementById('snacks');
+                if (this.checked) {
+                    snacksInput.value = 'NA';
+                    snacksInput.disabled = true;
+                } else {
+                    snacksInput.value = '';
+                    snacksInput.disabled = false;
+                }
+            });
+
+            document.getElementById('no-meals').addEventListener('change', function() {
+                var mealsInput = document.getElementById('meals');
+                if (this.checked) {
+                    mealsInput.value = 'NA';
+                    mealsInput.disabled = true;
+                } else {
+                    mealsInput.value = '';
+                    mealsInput.disabled = false;
+                }
+            });
+
+            // Generate and set the slip number when the page loads
+            document.getElementById('slip').value = generateSlipNumber();
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Visitor Details</h2>
+        <form action="/submit" method="post">
+            <label for="slip">Canteen slip No: </label>
+            <input type="text" name="Slip" id="slip" required >
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Full Name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+
+            <label for="Canteen">Choose Canteen:</label>
+            <select name="Canteen" id="Canteen" required>
+                <option value="" disabled selected>--Select a canteen--</option>
+                <option value="Canteen 1">Canteen 1</option>
+                <option value="Canteen 2">Canteen 2</option>
+                <option value="Canteen 3">Canteen 3</option>
+                <option value="Canteen 4">Canteen 4</option>
+            </select>
+            <label for="tea">Type of meal: </label>
+            <label for="tea">Tea:</label>
+            <input type="text" id="tea" name="Tea" pattern="^[1-9]\d*$" required>
+            <input type="checkbox" id="no-tea" name="no-Tea"> NA
+
+            <label for="snacks">Snacks:</label>
+            <input type="text" id="snacks" name="Snacks" pattern="^[1-9]\d*$" required>
+            <input type="checkbox" id="no-snacks" name="no-snacks"> NA
+
+            <label for="meals">No. of meals:</label>
+            <input type="text" id="meals" name="meals" pattern="^[1-9]\d*$" required>
+            <input type="checkbox" id="no-meals" name="no-meals"> NA
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
